@@ -1,0 +1,1127 @@
+/* فونت فارسی Vazirmatn با وزن‌های مختلف */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* تنظیمات پایه طبق مشخصات شما */
+@layer base {
+  html {
+    font-family: 'Vazirmatn', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-neutral-bg text-neutral-text;
+    font-size: 14px; /* Mobile First: 14px base */
+  }
+  
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px; /* Desktop: 16px base */
+    }
+  }
+  
+  /* تایپوگرافی طبق مشخصات */
+  h1 {
+    @apply text-h1 font-bold;
+  }
+  
+  h2 {
+    @apply text-h2 font-bold;
+  }
+  
+  h3 {
+    @apply text-h3 font-bold;
+  }
+  
+  p {
+    @apply text-body font-normal;
+  }
+  
+  small {
+    @apply text-small font-normal;
+  }
+  
+  /* فاصله‌های بین سکشن‌ها */
+  section {
+    @apply py-section-mobile md:py-section;
+  }
+}
+
+/* کامپوننت‌های سفارشی */
+@layer components {
+  /* دکمه‌ها طبق مشخصات */
+  .btn {
+    @apply font-semibold rounded-lg transition-all duration-300
+           focus:outline-none focus:ring-2 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 
+           hover:shadow-button-hover shadow-button
+           focus:ring-primary-500
+           px-4 py-2 md:px-8 md:py-3; /* ریسپانسیو padding */
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-600 text-white hover:bg-secondary-700 
+           hover:shadow-button-hover shadow-button
+           focus:ring-secondary-500
+           px-4 py-2 md:px-8 md:py-3;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-primary-200 text-primary-600 
+           hover:border-primary-400 hover:bg-primary-50
+           focus:ring-primary-500
+           px-4 py-2 md:px-8 md:py-3;
+  }
+  
+  /* کارت‌ها */
+  .card {
+    @apply bg-white rounded-xl border border-neutral-border
+           shadow-card transition-all duration-300
+           hover:shadow-card-hover;
+    max-width: 100%; /* Mobile First */
+  }
+  
+  @media (min-width: 1024px) {
+    .card {
+      max-width: 350px; /* Desktop: عرض 350px */
+    }
+  }
+  
+  .card-hover {
+    @apply hover:-translate-y-1;
+  }
+  
+  /* نوار پیشرفت */
+  .progress-bar {
+    @apply w-full h-2 bg-neutral-border rounded-full overflow-hidden;
+  }
+  
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-primary-600 to-secondary-500
+           rounded-full;
+    animation: progressFill 2s ease-out forwards;
+  }
+  
+  /* اسکرول‌بار سفارشی */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #2563eb #f1f5f9;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-primary-600 to-secondary-500 rounded-full;
+  }
+  
+  /* استایل‌های فرم */
+  .form-input {
+    @apply w-full px-4 py-3 border border-neutral-border rounded-lg
+           focus:outline-none focus:ring-2 focus:ring-primary-500
+           focus:border-transparent transition-all duration-200
+           placeholder:text-gray-400;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+  
+  /* گریدهای ریسپانسیو */
+  .grid-responsive {
+    @apply grid grid-cols-1 gap-6;
+  }
+  
+  @media (min-width: 768px) {
+    .grid-responsive {
+      @apply grid-cols-2;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .grid-responsive {
+      @apply grid-cols-3;
+    }
+  }
+  
+  /* سکشن‌ها */
+  .section-container {
+    @apply container mx-auto px-4 md:px-8;
+  }
+  
+  .section-title {
+    @apply text-center mb-12;
+  }
+  
+  .section-title h2 {
+    @apply relative inline-block mb-4;
+  }
+  
+  .section-title h2::after {
+    content: '';
+    @apply absolute bottom-0 right-1/2 transform translate-x-1/2
+           w-16 h-1 bg-gradient-to-r from-primary-600 to-secondary-500
+           rounded-full mt-2;
+  }
+  
+  .section-subtitle {
+    @apply text-gray-600 text-lg max-w-2xl mx-auto;
+  }
+}
+
+/* استایل‌های سفارشی خارج از لایه */
+* {
+  box-sizing: border-box;
+}
+
+/* انیمیشن‌های سفارشی */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* لودینگ برای تصاویر */
+.image-loading {
+  @apply bg-gray-200 animate-pulse;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Notification */
+.notification {
+  @apply fixed top-4 left-4 z-50 max-w-sm animate-slide-in-right;
+}
+
+/* هدر sticky */
+.sticky-header {
+  @apply sticky top-0 z-40 transition-all duration-300;
+}
+
+.sticky-header.scrolled {
+  @apply shadow-lg;
+}
+
+/* منوی موبایل */
+.mobile-menu {
+  @apply fixed inset-y-0 left-0 z-50 w-full max-w-sm bg-white
+         transform transition-transform duration-300 ease-in-out
+         shadow-2xl;
+}
+
+.mobile-menu.open {
+  @apply translate-x-0;
+}
+
+.mobile-menu.closed {
+  @apply -translate-x-full;
+}
+
+/* افکت hover تصاویر */
+.image-hover-container {
+  @apply relative overflow-hidden rounded-lg;
+}
+
+.image-hover-container img {
+  @apply transition-transform duration-500;
+}
+
+.image-hover-container:hover img {
+  @apply scale-110;
+}
+
+.image-hover-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/60 to-transparent
+         opacity-0 transition-opacity duration-300
+         flex items-end p-6;
+}
+
+.image-hover-container:hover .image-hover-overlay {
+  @apply opacity-100;
+}
+
+/* استایل‌های دسترسی‌پذیری */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden
+         whitespace-nowrap border-0;
+}
+
+.skip-to-content {
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4
+         focus:z-50 focus:bg-white focus:px-4 focus:py-2
+         focus:rounded-lg focus:shadow-lg;
+}
+
+/* استایل‌های چاپ */
+@media print {
+  .no-print {
+    @apply hidden;
+  }
+  
+  body {
+    @apply text-black bg-white;
+  }
+  
+  a {
+    @apply text-black no-underline;
+  }
+}
+/* انتهای فایل globals.css اضافه کنید */
+
+/* استایل‌های جدید برای کامپوننت‌های جدید */
+.directors-slider {
+  @apply relative;
+}
+
+.directors-slider .swiper-slide {
+  @apply opacity-75 transition-opacity duration-300;
+}
+
+.directors-slider .swiper-slide-active {
+  @apply opacity-100;
+}
+
+/* انیمیشن‌های جدید */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+/* بهبود ظاهر کارت‌ها */
+.card {
+  @apply bg-white rounded-xl border border-gray-200 shadow-lg transition-all duration-300;
+}
+
+.card:hover {
+  @apply shadow-xl -translate-y-1;
+}
+
+/* استایل‌های دکمه‌های جدید */
+.btn-gradient {
+  @apply bg-gradient-to-r from-primary-600 to-secondary-500 text-white 
+         hover:from-primary-700 hover:to-secondary-600 
+         transition-all duration-300 shadow-lg hover:shadow-xl;
+}
+/* انیمیشن‌ها */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* استایل‌های سفارشی */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+}
+
+/* گرادیانت‌های زیبا */
+.gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #f59e0b 50%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* استایل‌های اضافی برای اسلایدر */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: white;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: #4f46e5 !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 16px !important;
+}
+
+.swiper-button-next {
+  left: 10px !important;
+  right: auto !important;
+}
+
+.swiper-button-prev {
+  right: 10px !important;
+  left: auto !important;
+}
+
+.swiper-pagination-bullet {
+  background: #9ca3af !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #4f46e5 !important;
+  opacity: 1;
+}
+
+/* انیمیشن‌های اضافی */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* استایل‌های ریسپانسیو */
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}
+/* استایل‌های اسلایدر */
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #cbd5e1;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #10b981;
+  transform: scale(1.2);
+}
+
+/* انیمیشن‌های فرآیند */
+@keyframes process-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse {
+  animation: process-pulse 2s ease-in-out infinite;
+}
+
+/* بهبود ریسپانسیو */
+@media (max-width: 768px) {
+  .process-step {
+    margin-bottom: 2rem;
+  }
+  
+  .process-step:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* استایل‌های دکمه‌های اسلایدر */
+.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* افکت‌های کارت */
+.card-hover-effect {
+  transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+}
+/* انتهای فایل globals.css اضافه کنید */
+
+/* انیمیشن‌های جدید */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 3s ease-in-out infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slideInDown {
+  animation: slideInDown 0.3s ease-out;
+}
+
+/* بهبود ظاهر اسلایدر */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: white;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  color: #10b981 !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #10b981;
+  color: white !important;
+  transform: scale(1.1);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #cbd5e1;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #10b981;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* بهبود ریسپانسیویتی برای دسکتاپ */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+/* بهبود کارت‌ها در دسکتاپ */
+@media (min-width: 1280px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* خط محدود متن */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* افکت شیشه‌ای */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* بهبود دکمه‌ها */
+.btn-gradient {
+  background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #0da271 0%, #0284c7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+}
+/* استایل‌های اختصاصی برای اسلایدر پروژه‌ها */
+.project-slider-wrapper {
+  direction: rtl;
+  position: relative;
+  width: 100%;
+}
+
+.project-slider-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .project-slide {
+    flex: 0 0 50%;
+    width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .project-slide {
+    flex: 0 0 33.333%;
+    width: 33.333%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .project-slide {
+    flex: 0 0 25%;
+    width: 25%;
+  }
+}
+
+/* بهبود ظاهر برای RTL */
+[dir="rtl"] .project-slider-wrapper {
+  direction: ltr;
+}
+
+[dir="rtl"] .project-slider-track {
+  direction: rtl;
+}
+
+/* انیمیشن‌های مخصوص اسلایدر */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInFromRight 0.6s ease-out;
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+/* استایل‌های جدید برای گرادیانت‌ها */
+.bg-emerald-25 {
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+.bg-amber-25 {
+  background-color: rgba(245, 158, 11, 0.05);
+}
+
+.bg-blue-25 {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+/* استایل‌های سفارشی برای Swiper */
+.projects-swiper {
+  padding: 10px 0 50px !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50% !important;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-button-prev {
+  right: -20px !important;
+  left: auto !important;
+}
+
+.swiper-button-next {
+  left: -20px !important;
+  right: auto !important;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  display: none !important;
+}
+
+.swiper-button-disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
+/* Pagination */
+.swiper-pagination-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background: #cbd5e1 !important;
+  opacity: 0.7 !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #10b981 !important;
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* بهبود ریسپانسیو */
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
+  
+  .projects-swiper {
+    padding: 10px 0 40px !important;
+  }
+}
+
+/* انیمیشن‌های کارت */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.swiper-slide {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* شیشه‌ای کردن هدر کارت */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+/* استایل‌های Modal */
+.shadow-3xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* محدود کردن تعداد خطوط */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* انیمیشن‌های اضافی */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* بهبود backdrop */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* استایل‌های scrollbar برای modal */
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #10b981 #f1f5f9;
+}
+
+.modal-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background: #10b981;
+  border-radius: 4px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+/* استایل‌های Swiper برای Modal */
+.swiper-button-prev-main,
+.swiper-button-next-main {
+  position: absolute;
+  top: 50% !important;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-button-prev-main {
+  right: 10px !important;
+  left: auto !important;
+}
+
+.swiper-button-next-main {
+  left: 10px !important;
+  right: auto !important;
+}
+
+.swiper-button-prev-main:after,
+.swiper-button-next-main:after {
+  display: none !important;
+}
+
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background: #cbd5e1 !important;
+  opacity: 0.7 !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #10b981 !important;
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Thumbnail Swiper */
+.thumb-swiper .swiper-slide {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.thumb-swiper .swiper-slide-thumb-active {
+  opacity: 1;
+  border-color: #10b981 !important;
+}
+
+/* بهبود ریسپانسیو برای Modal */
+@media (max-width: 640px) {
+  .swiper-button-prev-main,
+  .swiper-button-next-main {
+    display: none !important;
+  }
+  
+  .shadow-3xl {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* حداکثر ارتفاع برای Swiper */
+@media (max-height: 800px) {
+  .swiper-slide .h-96 {
+    height: 300px !important;
+  }
+}
+
+@media (max-height: 600px) {
+  .swiper-slide .h-96 {
+    height: 200px !important;
+  }
+}
+
+/* بهبود نمایش در موبایل */
+@media (max-width: 768px) {
+  .swiper-pagination {
+    bottom: 5px !important;
+  }
+}
+
+/* انیمیشن fade-in برای تصاویر */
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+img {
+  animation: fadeInImage 0.5s ease-out;
+}
+/* اضافه کردن به فایل globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* مخفی کردن اسکرول‌بار برای عناصر خاص */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* بهبود نمایش اعداد فارسی در نمودارها */
+.recharts-text {
+  font-family: var(--font-vazir), system-ui, sans-serif;
+}
+
+/* استایل برای tooltip نمودارها */
+.recharts-tooltip-wrapper {
+  direction: rtl;
+}
+
+/* استایل برای legend نمودارها */
+.recharts-legend-item-text {
+  font-family: var(--font-vazir), system-ui, sans-serif;
+}
+/* به فایل globals.css اضافه کنید */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* مخفی کردن اسکرول‌بار برای عناصر خاص */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* اسکرول بار سفارشی */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* بهبود نمایش نمودارها */
+.recharts-wrapper {
+  direction: ltr;
+}
+
+.recharts-text {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.recharts-tooltip-wrapper {
+  direction: rtl;
+}
+
+/* انیمیشن‌های سفارشی */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* برای دکمه‌های انتخاب سال */
+.year-tab {
+  transition: all 0.3s ease;
+}
+
+.year-tab:hover {
+  transform: translateY(-2px);
+}
+
+.year-tab.active {
+  box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.2), 0 2px 4px -1px rgba(5, 150, 105, 0.1);
+}
